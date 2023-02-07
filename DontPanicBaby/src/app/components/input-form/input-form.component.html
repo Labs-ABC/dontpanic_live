@@ -1,14 +1,23 @@
 <form class="input__form">
   <div class="input__form__items">
     <div class="input-container">
-      <app-input-box></app-input-box>
-      <app-input-box></app-input-box>
-      <app-input-box></app-input-box>
-      <app-input-box></app-input-box>
-      <app-input-box></app-input-box>
-      <app-input-box></app-input-box>
+      <app-input-box [(value)]="equationInput.firstInput"
+        (valueChange)="equationInput.firstInput = $event"></app-input-box>
+      <app-input-box [(value)]="equationInput.secondInput"
+        (valueChange)="equationInput.secondInput = $event"></app-input-box>
+      <app-input-box [(value)]="equationInput.thirdInput"
+        (valueChange)="equationInput.thirdInput = $event"></app-input-box>
+      <app-input-box [(value)]="equationInput.fourthInput"
+        (valueChange)="equationInput.fourthInput = $event"></app-input-box>
+      <app-input-box [(value)]="equationInput.fifthInput"
+        (valueChange)="equationInput.fifthInput = $event"></app-input-box>
+      <app-input-box [(value)]="equationInput.sixthInput"
+        (valueChange)="equationInput.sixthInput = $event"></app-input-box>
       <p class="input-container-result"> = 42</p>
     </div>
-    <button class="button__form" type="submit">Submit</button>
+
+    <button (click)="handleEquationSubmit()" class="button__form" type="submit">Submit</button>
   </div>
+
+
 </form>

@@ -9,7 +9,9 @@ export class InputBoxComponent {
   @Input()
   value :string;
 
-  @Output() valueChange = new EventEmitter<string>()
+  @Output()
+  valueChange = new EventEmitter<string>()
+  
   private operators = '+-*/'
 
   constructor(private el: ElementRef){
