@@ -1,0 +1,13 @@
+.footer {
+    background-color: #D0CCCC;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+.footer > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}

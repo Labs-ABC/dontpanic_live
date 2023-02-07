@@ -1,0 +1,9 @@
+input{
+	width: 91px;
+	aspect-ratio: 1;
+	border: 2px solid black;
+	background: #D0CCCC;
+	font-size: 33px;
+	text-align: center;
+	border-radius:4px ;
+}
