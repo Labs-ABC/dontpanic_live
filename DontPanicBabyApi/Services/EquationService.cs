@@ -1,5 +1,7 @@
 ﻿using DontPanicBabyApi.Interfaces;
 using DontPanicBabyApi.Models;
+using System.Data;
+using System.Text;
 
 namespace DontPanicBabyApi.Services
 {
@@ -7,26 +9,39 @@ namespace DontPanicBabyApi.Services
   {
     private readonly string ExpectedEquation;
     
-    public EquationService()
-    {
+    public EquationService() {
         ExpectedEquation = "21*2-0";
     }
 
+    public bool ValidateEquationResult(EquationInput eq) {
+      DataTable dataTable = new DataTable();
+      var result = dataTable.Compute(eq.ToString(), "");
+
+      if (result.ToString() != "42")
+         return false;
+      return true;
+    }
+
+    public char ValidateInput(char input, int index) {
+      if (input == ExpectedEquation[index])
+        return 'C';
+      if (ExpectedEquation.IndexOf(input) != -1)
+        return 'T';
+      return 'X';
+    }
+
     public EquationInput ValidateEquation(EquationInput equationInput) {
-      string equation = equationInput.ToString();
-      if (equation == null)
+      if (!ValidateEquationResult(equationInput))
         return equationInput;
-      for (int i = 0; i < 6; i++) {
-        int foundIndex = equation.IndexOf(ExpectedEquation[i]);
-        if (foundIndex == -1) {
-          equation.Replace(equation[i], 'X');
-        } else if (foundIndex == i) {
-          equation.Replace(equation[i], 'C');
-        } else {
-          equation.Replace(equation[i], 'T');
-        }
-      }
-      return equationInput.ToEquationInput(equation);
+
+      equationInput.FirstInput = ValidateInput(equationInput.FirstInput, 0);
+      equationInput.SecondInput = ValidateInput(equationInput.SecondInput, 1);
+      equationInput.ThirdInput = ValidateInput(equationInput.ThirdInput, 2);
+      equationInput.FourthInput = ValidateInput(equationInput.FourthInput,3);
+      equationInput.FifthInput = ValidateInput(equationInput.FifthInput, 4);
+      equationInput.SixthInput = ValidateInput(equationInput.SixthInput, 5);
+
+      return equationInput;
     }
   }
 }

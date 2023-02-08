@@ -11,7 +11,6 @@ namespace DontPanicBabyApi.Controllers
   {
     [HttpPatch(Name = "EquationRoute")]
     public ActionResult<EquationInput> EquationRoute(EquationInput input) {
-      input.FirstInput = 'X';
       var equationService = new EquationService();
       equationService.ValidateEquation(input);
       return input;

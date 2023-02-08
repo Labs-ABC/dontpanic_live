@@ -28,14 +28,14 @@ namespace DontPanicBabyApi.Models
     }
 
     public EquationInput ToEquationInput (string strEquation)
-        {
-            FirstInput = strEquation[0];
-            SecondInput = strEquation[1];
-            ThirdInput = strEquation[2];
-            FourthInput = strEquation[3];
-            FifthInput = strEquation[4];
-            SixthInput = strEquation[5];
-            return this;
-        }
+    {
+        FirstInput = strEquation[0];
+        SecondInput = strEquation[1];
+        ThirdInput = strEquation[2];
+        FourthInput = strEquation[3];
+        FifthInput = strEquation[4];
+        SixthInput = strEquation[5];
+        return this;
+    }
   }
 }
