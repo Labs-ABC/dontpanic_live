@@ -1,4 +1,4 @@
-input{
+.input{
 	width: 91px;
 	aspect-ratio: 1;
 	border: 2px solid black;
@@ -6,4 +6,9 @@ input{
 	font-size: 33px;
 	text-align: center;
 	border-radius:4px ;
+}
+
+.input__wrong {
+  border-color: darkred;
+  background: red;
 }

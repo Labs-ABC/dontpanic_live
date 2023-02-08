@@ -41,5 +41,6 @@ export class InputFormComponent {
     console.log("result apenas data",result.data);
 
   }
+  firstBoxClass = "input__wrong";
 }
 

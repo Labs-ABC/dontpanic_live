@@ -2,7 +2,7 @@
   <div class="input__form__items">
     <div class="input-container">
       <app-input-box [(value)]="equationInput.firstInput"
-        (valueChange)="equationInput.firstInput = $event"></app-input-box>
+        (valueChange)="equationInput.firstInput = $event" [inputClass]="firstBoxClass"></app-input-box>
       <app-input-box [(value)]="equationInput.secondInput"
         (valueChange)="equationInput.secondInput = $event"></app-input-box>
       <app-input-box [(value)]="equationInput.thirdInput"

@@ -32,4 +32,7 @@ export class InputBoxComponent {
   isValid(char: string): boolean | RegExpMatchArray {
     return char.match(/\d/) || this.operators.indexOf(char) >= 0;
   }
+
+  @Input()
+  inputClass = "input";
 }
