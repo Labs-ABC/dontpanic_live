@@ -9,6 +9,9 @@ export class InputBoxComponent {
   @Input()
   value :string;
 
+  @Input()
+  inputClass = "input";
+
   @Output()
   valueChange = new EventEmitter<string>()
   
@@ -33,6 +36,4 @@ export class InputBoxComponent {
     return char.match(/\d/) || this.operators.indexOf(char) >= 0;
   }
 
-  @Input()
-  inputClass = "input";
 }

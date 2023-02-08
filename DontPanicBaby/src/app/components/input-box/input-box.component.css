@@ -8,7 +8,17 @@
 	border-radius:4px ;
 }
 
-.input__wrong {
+.input__not__found {
   border-color: darkred;
-  background: red;
+  background-color: red;
+}
+
+.input__wrong__position {
+  border-color: darkorange;
+  background-color: orange;
+}
+
+.input__correct__position {
+  border-color: darkgreen;
+  background-color: green;
 }
