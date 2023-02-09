@@ -1,5 +1,6 @@
 <form class="input__form">
   <div class="input__form__items">
+    <h2 class="title">Tentativa atual</h2>
     <div class="input-container">
       <app-input-box [(value)]="equationInput.firstInput"
         (valueChange)="equationInput.firstInput = $event" [inputClass]="equationResult.firstInput"></app-input-box>
@@ -13,7 +14,6 @@
         (valueChange)="equationInput.fifthInput = $event" [inputClass]="equationResult.fifthInput"></app-input-box>
       <app-input-box [(value)]="equationInput.sixthInput"
         (valueChange)="equationInput.sixthInput = $event" [inputClass]="equationResult.sixthInput"></app-input-box>
-      <p class="input-container-result"> = 42</p>
     </div>
 
     <button (click)="handleEquationSubmit()" class="button__form" type="submit">Submit</button>

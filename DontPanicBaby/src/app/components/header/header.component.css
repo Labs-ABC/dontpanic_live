@@ -32,3 +32,26 @@
 	border-top: 1px solid #7028E5;
 	border-radius: 0 0 5px 5px;
 }
+
+.info-list-item {
+   list-style-position: inside;
+   list-style-type: square;
+
+}
+
+.info-list-item::marker {
+    font-size: 150%;
+}
+
+ul li:first-child::marker {
+    color: green;
+}
+
+ul li:nth-child(2)::marker {
+  color: orange;
+}
+
+ul li:nth-child(3)::marker {
+  color: red;
+}
+

@@ -3,8 +3,11 @@
   <h1>Don't Panic Baby</h1>
   <img class="infos-icon" src="/assets/info.svg" (click)="toggleInfo()">
   <div class="infos" *ngIf="showInfo">
-    <p>C: É o número certo e está na posição correta</p>
-    <p>T: Contém o número, porém esta na posição errada</p>
-    <p>X: Não contém o número</p>
+    <ul>
+      <li class="info-list-item">Verde: É o número certo e está na posição correta</li>
+      <li class="info-list-item">Laranja: Contém o número, porém esta na posição errada</li>
+      <li class="info-list-item">Vermelho: Não contém o número</li>
+    </ul>
+
   </div>
 </header>

@@ -40,3 +40,8 @@ button:hover{
 button:active{
 	transform: scale(0.95);
 }
+
+.title {
+    font-size: 30px;
+    text-align: center;
+}
