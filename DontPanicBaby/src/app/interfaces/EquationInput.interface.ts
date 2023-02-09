@@ -23,4 +23,24 @@ export default class EquationInput {
     this.fifthInput = value;
     this.sixthInput = value;
   }
+
+  copy(rhs: EquationInput) : void{
+    this.firstInput = rhs.firstInput;
+    this.secondInput = rhs.secondInput;
+    this.thirdInput = rhs.thirdInput;
+    this.fourthInput = rhs.fourthInput;
+    this.fifthInput = rhs.fifthInput;
+    this.sixthInput = rhs.sixthInput;
+  }
+
+  equals(rhs: EquationInput): boolean {
+    if (this.firstInput != rhs.firstInput ||
+      this.secondInput != rhs.secondInput ||
+      this.thirdInput != rhs.thirdInput ||
+      this.fourthInput != rhs.fourthInput ||
+      this.fifthInput != rhs.fifthInput ||
+      this.sixthInput != rhs.sixthInput)
+      return false;
+    return true;
+  }
 }

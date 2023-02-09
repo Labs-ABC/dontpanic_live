@@ -5,7 +5,8 @@
 	background: #D0CCCC;
 	font-size: 33px;
 	text-align: center;
-	border-radius:4px ;
+	border-radius: 4px ;
+  color: white;
 }
 
 .input__not__found {
