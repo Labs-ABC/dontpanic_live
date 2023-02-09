@@ -9,23 +9,12 @@ import axios from 'axios';
 })
 
 export class InputFormComponent {
-  equationInput: EquationInput = {
-    firstInput: '',
-    secondInput: '',
-    thirdInput: '',
-    fourthInput: '',
-    fifthInput: '',
-    sixthInput: '',
-  }
+  equationInput: EquationInput = new EquationInput();
 
-  equationResult: EquationInput = {
-    firstInput: 'input',
-    secondInput: 'input',
-    thirdInput: 'input',
-    fourthInput: 'input',
-    fifthInput: 'input',
-    sixthInput: 'input',
-  }
+  equationResult: EquationInput = new EquationInput('input');
+
+  lastEquation: EquationInput = new EquationInput();
+
 
   validateEquation() : boolean {
     if (this.equationInput.firstInput == '' ||
@@ -65,8 +54,7 @@ export class InputFormComponent {
 
     //TODO: Aqui vai estar a requisição pra api
     const result = await axios.patch('https://localhost:5001/api/Equation', this.equationInput);
-    console.log("result completo", result);
-    console.log("result apenas data", result.data);
+
     this.validateApiResponse(result.data);
   }
 }

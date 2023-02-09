@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { InputBoxComponent } from './components/input-box/input-box.component';
+import { InputBoxBlockComponent } from './components/input-box-block/input-box-block.component';
 import { InputFormComponent } from './components/input-form/input-form.component';
 
 @NgModule({
@@ -15,6 +16,7 @@ import { InputFormComponent } from './components/input-form/input-form.component
     HeaderComponent,
     FooterComponent,
     InputBoxComponent,
+    InputBoxBlockComponent,
     InputFormComponent
   ],
   imports: [

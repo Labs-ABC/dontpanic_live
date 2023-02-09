@@ -1,3 +1,20 @@
+
+<h2 class="title">Last attempt</h2>
+<div class="input-container">
+  <app-input-box-block [value]="lastEquation.firstInput"
+                  [inputClass]="equationResult.firstInput"></app-input-box-block>
+  <app-input-box-block [value]="lastEquation.secondInput"
+                  [inputClass]="equationResult.secondInput"></app-input-box-block>
+  <app-input-box-block [value]="lastEquation.thirdInput"
+                  [inputClass]="equationResult.thirdInput"></app-input-box-block>
+  <app-input-box-block [value]="lastEquation.fourthInput"
+                  [inputClass]="equationResult.fourthInput"></app-input-box-block>
+  <app-input-box-block [value]="lastEquation.fifthInput"
+                  [inputClass]="equationResult.fifthInput"></app-input-box-block>
+  <app-input-box-block [value]="lastEquation.sixthInput"
+                  [inputClass]="equationResult.sixthInput"></app-input-box-block>
+</div>
+
 <form class="input__form">
   <div class="input__form__items">
     <h2 class="title">Current attempt</h2>
@@ -18,6 +35,4 @@
 
     <button (click)="handleEquationSubmit()" class="button__form" type="submit">Submit</button>
   </div>
-
-
 </form>

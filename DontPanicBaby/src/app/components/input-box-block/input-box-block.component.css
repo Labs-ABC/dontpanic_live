@@ -1,0 +1,24 @@
+.input{
+	width: 91px;
+	aspect-ratio: 1;
+	border: 2px solid black;
+	background: #D0CCCC;
+	font-size: 33px;
+	text-align: center;
+	border-radius:4px ;
+}
+
+.input__not__found {
+  border-color: darkred;
+  background-color: red;
+}
+
+.input__wrong__position {
+  border-color: darkorange;
+  background-color: orange;
+}
+
+.input__correct__position {
+  border-color: darkgreen;
+  background-color: green;
+}
