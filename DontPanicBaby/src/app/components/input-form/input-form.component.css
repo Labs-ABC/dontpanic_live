@@ -4,7 +4,7 @@
 	flex-direction: column;
 	justify-content: space-around;
 	align-items: center;
-/*	height: 60vh;*/
+  padding-block: 50px;
 }
 
 .input-container {
@@ -13,6 +13,7 @@
 	align-items: center;
 	justify-content: center;
   margin-bottom: 100px;
+  padding-top: 25px;
 }
 
 .input-container-result{
@@ -45,3 +46,4 @@ button:active{
     font-size: 30px;
     text-align: center;
 }
+

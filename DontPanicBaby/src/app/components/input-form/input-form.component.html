@@ -34,5 +34,6 @@
     </div>
 
     <button (click)="handleEquationSubmit()" class="button__form" type="submit">Submit</button>
+    <span *ngIf="showMessage">{{message}}</span>
   </div>
 </form>

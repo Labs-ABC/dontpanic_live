@@ -13,8 +13,13 @@ export class InputFormComponent {
 
   equationResult: EquationInput = new EquationInput('input');
 
+  equationCorrect: EquationInput = new EquationInput('C');
+
   lastEquation: EquationInput = new EquationInput();
 
+  showMessage: boolean = false;
+
+  message: string = 'Congratulations! You found the hidden equation.';
 
   validateEquation() : boolean {
     if (this.equationInput.firstInput == '' ||
@@ -47,6 +52,10 @@ export class InputFormComponent {
     this.equationResult.sixthInput = this.validateApiData(result.sixthInput);
   }
 
+  isCorrectEquation(): boolean {
+    return this.equationResult.equals(this.equationCorrect);
+  }
+
   async handleEquationSubmit(){
     if (!this.validateEquation())
       return ;
@@ -61,6 +70,9 @@ export class InputFormComponent {
     }
     //Valida A resposta
     this.validateApiResponse(result.data);
+    console.log(this.showMessage);
+    this.showMessage = this.isCorrectEquation();
+    console.log(this.showMessage);
 
     //copia o input para a linha de cima
     this.lastEquation.copy(this.equationInput);
