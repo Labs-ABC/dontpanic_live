@@ -52,14 +52,13 @@ export class InputFormComponent {
     this.equationResult.sixthInput = this.validateApiData(result.sixthInput);
   }
 
-  isCorrectEquation(): boolean {
-    return this.equationResult.equals(this.equationCorrect);
+  isCorrectEquation(result: EquationInput): boolean {
+    return this.equationCorrect.equals(result);
   }
 
   async handleEquationSubmit(){
     if (!this.validateEquation())
       return ;
-    console.log(this.equationInput);
 
     //TODO: Aqui vai estar a requisição pra api
     const result = await axios.patch('https://localhost:5001/api/Equation', this.equationInput);
@@ -70,9 +69,7 @@ export class InputFormComponent {
     }
     //Valida A resposta
     this.validateApiResponse(result.data);
-    console.log(this.showMessage);
-    this.showMessage = this.isCorrectEquation();
-    console.log(this.showMessage);
+    this.showMessage = this.isCorrectEquation(result.data);
 
     //copia o input para a linha de cima
     this.lastEquation.copy(this.equationInput);
