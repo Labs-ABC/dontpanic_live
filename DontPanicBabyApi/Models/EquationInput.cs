@@ -1,25 +1,32 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using DontPanicBabyApi.Attributes;
+using System.ComponentModel.DataAnnotations;
 
 namespace DontPanicBabyApi.Models
 {
   public class EquationInput {
 
     [Required]
+    [InputCustom]
     public char FirstInput  { get; set; }
 
     [Required]
+    [InputCustom]
     public char SecondInput { get; set; }
 
     [Required]
+    [InputCustom]
     public char ThirdInput  { get; set; }
 
     [Required]
+    [InputCustom]
     public char FourthInput { get; set; }
 
     [Required]
+    [InputCustom]
     public char FifthInput  { get; set; }
 
     [Required]
+    [InputCustom]
     public char SixthInput  { get; set; }
 
     public override string ToString()
