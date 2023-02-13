@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import EquationInput from 'src/app/interfaces/EquationInput.interface';
 import axios from 'axios';
-import { environment } from 'src/environments/environments';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-input-form',
