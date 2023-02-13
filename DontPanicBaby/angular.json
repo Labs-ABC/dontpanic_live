@@ -31,6 +31,12 @@
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",
@@ -58,8 +64,7 @@
         },
         "serve": {
           "options": {
-		  	"port": 5014,
-		  	"proxyConfig": "proxy.conf.json"
+		  	"port": 5014
 		  },
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {

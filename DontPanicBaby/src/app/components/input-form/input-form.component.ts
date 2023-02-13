@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import EquationInput from 'src/app/interfaces/EquationInput.interface';
 import axios from 'axios';
+import { environment } from 'src/environments/environments';
 
 @Component({
   selector: 'app-input-form',
@@ -61,7 +62,7 @@ export class InputFormComponent {
       return ;
 
     //TODO: Aqui vai estar a requisição pra api
-    const result = await axios.patch('http://labs-abc.42sp.org.br:5014/api/Equation', this.equationInput);
+    const result = await axios.patch(environment.url + environment.EquationEndPoint, this.equationInput);
     
     if (this.equationInput.equals(result.data)) {
       //this.equationInput.clear('');
