@@ -1,1 +1,1 @@
-<input autofocus class="input" [(ngModel)]="value" (input)="onInput()" maxlength=" 1" [class]="inputClass">
+<input #input autofocus class="input" [(ngModel)]="value" (input)="onInput(); moveFocus(input)" (keydown)="handleBackspace($event, input)" maxlength=" 1" [class]="inputClass">
