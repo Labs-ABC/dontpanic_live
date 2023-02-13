@@ -30,7 +30,7 @@ Caso o resultado da equação inserida não for 42 o programa não faz nada
 
 ## Como rodar
 
-- Clonar o repositório:
+- Clonar o repositório
 ```txt
 git clone https://github.com/42sp/42labs-dontpanic_baby-18404527.git
 ```
