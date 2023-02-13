@@ -57,6 +57,10 @@
           "defaultConfiguration": "production"
         },
         "serve": {
+          "options": {
+		  	"port": 5014,
+		  	"proxyConfig": "proxy.conf.json"
+		  },
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {

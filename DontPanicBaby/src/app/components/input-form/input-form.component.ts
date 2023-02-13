@@ -61,7 +61,7 @@ export class InputFormComponent {
       return ;
 
     //TODO: Aqui vai estar a requisição pra api
-    const result = await axios.patch('http://localhost:5000/api/Equation', this.equationInput);
+    const result = await axios.patch('http://labs-abc.42sp.org.br:5014/api/Equation', this.equationInput);
     
     if (this.equationInput.equals(result.data)) {
       //this.equationInput.clear('');
