@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import EquationInput from 'src/app/interfaces/EquationInput.class';
+import EquationInput from 'src/app/class/EquationInput.class';
 import axios from 'axios';
 import { environment } from 'src/environments/environment';
 
