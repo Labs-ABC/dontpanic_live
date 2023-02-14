@@ -67,6 +67,57 @@ namespace DontPanicBabyTest
     }
 
     [Test]
+    public void Test_Validate_Equation_Result_Two_Operator_Return_False()
+    {
+      var twoOperators = new EquationInput
+      {
+        FirstInput = '2',
+        SecondInput = '1',
+        ThirdInput = '*',
+        FourthInput = '*',
+        FifthInput = '1',
+        SixthInput = '0'
+      };
+
+      var result = service.ValidateEquationResult(twoOperators);
+      Assert.That(result, Is.False);
+    }
+
+    [Test]
+    public void Test_Validate_Equation_Result_Operator_At_Begin_Return_False()
+    {
+      var operatorsAtBegin = new EquationInput
+      {
+        FirstInput = '-',
+        SecondInput = '1',
+        ThirdInput = '*',
+        FourthInput = '2',
+        FifthInput = '1',
+        SixthInput = '0'
+      };
+
+      var result = service.ValidateEquationResult(operatorsAtBegin);
+      Assert.That(result, Is.False);
+    }
+
+    [Test]
+    public void Test_Validate_Equation_Result_Operator_At_End_Return_False()
+    {
+      var operatorsAtEnd = new EquationInput
+      {
+        FirstInput = '2',
+        SecondInput = '1',
+        ThirdInput = '*',
+        FourthInput = '2',
+        FifthInput = '1',
+        SixthInput = '/'
+      };
+
+      var result = service.ValidateEquationResult(operatorsAtEnd);
+      Assert.That(result, Is.False);
+    }
+
+    [Test]
     public void Test_Validate_Input_Right_Number_In_Right_Position_Return_C()
     {
       var result = service.ValidateInput('2', 0);

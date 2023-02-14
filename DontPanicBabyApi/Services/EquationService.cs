@@ -1,6 +1,7 @@
 ﻿using DontPanicBabyApi.Interfaces;
 using DontPanicBabyApi.Models;
 using System.Data;
+using System.Data.Common;
 using System.Text;
 
 namespace DontPanicBabyApi.Services
@@ -8,18 +9,23 @@ namespace DontPanicBabyApi.Services
   public class EquationService : IEquationService
   {
     private readonly string ExpectedEquation;
-    
+
     public EquationService() {
-        ExpectedEquation = "21*2-0";
+      ExpectedEquation = "21*2-0";
     }
 
     public bool ValidateEquationResult(EquationInput eq) {
-      DataTable dataTable = new DataTable();
-      var result = dataTable.Compute(eq.ToString(), "");
+      try {
+        DataTable dataTable = new DataTable();
+        var result = dataTable.Compute(eq.ToString(), "");
+        if (result.ToString() != "42")
+          return false;
+        return true;
+      } catch {
+        return false;
+      }
 
-      if (result.ToString() != "42")
-         return false;
-      return true;
+
     }
 
     public char ValidateInput(char input, int index) {
