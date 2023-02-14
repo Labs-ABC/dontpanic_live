@@ -57,13 +57,15 @@ export class InputFormComponent {
     return this.equationCorrect.equals(result);
   }
 
-  async handleEquationSubmit(){
+  async handleEquationSubmit() {
     if (!this.validateEquation())
-      return ;
-
-    //TODO: Aqui vai estar a requisição pra api
-    const result = await axios.patch(environment.url + environment.EquationEndPoint, this.equationInput);
-    
+      return;
+    var result;
+    try {
+      result = await axios.patch(environment.url + environment.EquationEndPoint, this.equationInput);
+    } catch {
+      return;
+    }
     if (this.equationInput.equals(result.data)) {
       //this.equationInput.clear('');
       return;
