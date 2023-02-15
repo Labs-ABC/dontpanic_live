@@ -1,3 +1,4 @@
+# Primeira estágio usado para compilar a aplicação
 FROM ubuntu:20.04 as build-stage
 
 # Cria e vai pra pasta /App
@@ -30,6 +31,7 @@ COPY . .
 #Faz o build da aplicação
 RUN npm run build
 
+# Segundo estágio usado para executar a aplicação
 FROM ubuntu:20.04 as production-stage
 
 WORKDIR /App
