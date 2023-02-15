@@ -5,8 +5,7 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicBabyApi", "DontPanicBabyApi.csproj", "{A77A4B1B-9434-495E-B7E1-A393A5F2BBF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicBabyTest", "..\DontPanicBabyTest\DontPanicBabyTest.csproj", "{6746EFBE-06BA-4A52-ADCD-FD30EE618BDB}"
-EndProject
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
