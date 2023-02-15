@@ -1,4 +1,4 @@
-FROM ubuntu:20.04 as base
+FROM ubuntu:20.04 as build-stage
 
 # Cria e vai pra pasta /App
 WORKDIR /App
@@ -29,6 +29,14 @@ COPY . .
 
 #Faz o build da aplicação
 RUN npm run build
+
+FROM ubuntu:20.04 as production-stage
+
+WORKDIR /App
+
+RUN apt-get update && apt-get install -y nginx
+
+COPY --from=build /App/dist /App
 
 # copiar o arquivo do nginx pra pasta correta
 COPY nginx.conf /etc/nginx/nginx.conf
