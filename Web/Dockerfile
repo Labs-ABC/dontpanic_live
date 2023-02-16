@@ -7,11 +7,11 @@ WORKDIR /App
 # instala o node e nginx
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive  apt-get install -y nodejs npm nginx
 
-#instalar curl
+# instalar curl
 RUN apt-get update && \
-  apt-get install -y curl 
+  apt-get install -y curl
 
-#Atualizar o node pra versão mais recente
+# Atualizar o node pra versão mais recente
 RUN curl -o node-v18.10.0-linux-x64.tar.gz https://nodejs.org/dist/v18.10.0/node-v18.10.0-linux-x64.tar.gz && \
   tar xzf node-v18.10.0-linux-x64.tar.gz && \
   rm node-v18.10.0-linux-x64.tar.gz && \
@@ -22,13 +22,13 @@ RUN curl -o node-v18.10.0-linux-x64.tar.gz https://nodejs.org/dist/v18.10.0/node
 # copia os arquivos pacgkage.json pra dentro do container na pasta /App
 COPY package*.json .
 
-#Instala as dependências (npm install)
+# Instala as dependências (npm install)
 RUN npm install
 
-#Copia todos os arquivos para a pasta app
+# Copia todos os arquivos para a pasta app
 COPY . .
 
-#Faz o build da aplicação
+# Faz o build da aplicação
 RUN npm run build
 
 # Segundo estágio usado para executar a aplicação
@@ -38,10 +38,10 @@ WORKDIR /App
 
 RUN apt-get update && apt-get install -y nginx
 
-COPY --from=build /App/dist /App
+COPY --from=build-stage /App/dist /App
 
 # copiar o arquivo do nginx pra pasta correta
 COPY nginx.conf /etc/nginx/nginx.conf
 
-#executa apenas quando iniciamos a imagem (docker run ou docker-compose up)
+# executa apenas quando iniciamos a imagem (docker run ou docker-compose up)
 CMD ["nginx", "-g", "daemon off;"]

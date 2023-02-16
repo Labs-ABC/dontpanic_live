@@ -8,7 +8,7 @@ COPY . .
 RUN dotnet publish -c Release -o out
 
 # Stage 2: Runtime
-FROM mcr.microsoft.com/dotnet/aspnet:6.0
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 as prod
 
 WORKDIR /app
 
