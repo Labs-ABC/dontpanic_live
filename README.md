@@ -1,4 +1,4 @@
-# DontPanicBaby
+# DontPanicDaily
 
 Esse projeto é um jogo tipo wordle em que você precisa adivinhar a equação escondida que resulta em 42
 #
@@ -34,9 +34,9 @@ Caso o resultado da equação inserida não for 42 o programa não faz nada
 ```txt
 git clone https://github.com/42sp/42labs-dontpanic_baby-18404527.git
 ```
-- Entrar no diretório DontPanicBaby
+- Entrar no diretório Web
 ```txt
-cd DontPanicBaby
+cd Web
 ```
 - Instalar as dependências
 ```txt
@@ -50,9 +50,9 @@ ng build
 ```txt
 sudo nginx -c nginx.conf -p ./
 ```
-- Entrar no diretório DontPanicBabyApi em outro terminal
+- Entrar no diretório Api em outro terminal
 ```txt
-cd DontPanicBabyApi
+cd Api
 ```
 - Build do Back
 ```txt
@@ -60,5 +60,5 @@ dotnet publish -c Release -o out
 ```
 - Subir o Back
 ```txt
-dotnet out/DontPanicBabyApi.dll
+dotnet out/Api.dll
 ```

@@ -1,7 +1,7 @@
-using DontPanicBabyApi.Models;
-using DontPanicBabyApi.Services;
+using Api.Models;
+using Api.Services;
 
-namespace DontPanicBabyTest
+namespace Test
 {
   public class Tests
   {

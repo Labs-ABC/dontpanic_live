@@ -14,4 +14,4 @@ WORKDIR /app
 
 COPY --from=build /app/out ./
 
-CMD ["dotnet", "DontPanicBabyApi.dll"]
+CMD ["dotnet", "Api.dll"]
