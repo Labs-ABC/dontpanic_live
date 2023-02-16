@@ -14,4 +14,6 @@ WORKDIR /app
 
 COPY --from=build /app/out ./
 
+EXPOSE 80
+
 CMD ["dotnet", "Api.dll"]
