@@ -1,8 +1,8 @@
-﻿using DontPanicBabyApi.Models;
+﻿using Api.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
-namespace DontPanicBabyApi.Attributes {
+namespace Api.Attributes {
   public class InputCustomAttribute : ValidationAttribute {
 
     public string GetErrorMessage() => "Invalid characters!";
