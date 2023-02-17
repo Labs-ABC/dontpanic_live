@@ -1,4 +1,9 @@
+using Api.Interfaces;
+using Api.Services;
+
 var builder = WebApplication.CreateBuilder(args);
+
+ConfigureServices(builder.Services);
 
 // Add services to the container.
 builder.Services.AddCors(options => {
@@ -25,5 +30,9 @@ app.UseCors();
 app.UseAuthorization();
 
 app.MapControllers();
+
+void ConfigureServices(IServiceCollection services) {
+  services.AddSingleton<IEquationService, EquationService>();
+}
 
 app.Run();

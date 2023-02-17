@@ -11,7 +11,16 @@ namespace Api.Services
     private readonly string ExpectedEquation;
 
     public EquationService() {
-      ExpectedEquation = "21*2-0";
+      //Aqui vira a solicitação ao banco para solicitar as equações
+      MockEquation mockEquation = new MockEquation();
+
+      ExpectedEquation = ChooseDailyEquation(mockEquation.ToArray());
+    }
+
+    public string ChooseDailyEquation(string[] equations) {
+      DateTime date = DateTime.Now;
+      Console.WriteLine(equations[date.Year * date.DayOfYear % equations.Length]);
+      return equations[date.Year * date.DayOfYear % equations.Length];
     }
 
     public bool ValidateEquationResult(EquationInput eq) {
@@ -24,8 +33,6 @@ namespace Api.Services
       } catch {
         return false;
       }
-
-
     }
 
     public char ValidateInput(char input, int index) {
@@ -39,14 +46,12 @@ namespace Api.Services
     public EquationInput ValidateEquation(EquationInput equationInput) {
       if (!ValidateEquationResult(equationInput))
         return equationInput;
-
       equationInput.FirstInput = ValidateInput(equationInput.FirstInput, 0);
       equationInput.SecondInput = ValidateInput(equationInput.SecondInput, 1);
       equationInput.ThirdInput = ValidateInput(equationInput.ThirdInput, 2);
       equationInput.FourthInput = ValidateInput(equationInput.FourthInput,3);
       equationInput.FifthInput = ValidateInput(equationInput.FifthInput, 4);
       equationInput.SixthInput = ValidateInput(equationInput.SixthInput, 5);
-
       return equationInput;
     }
   }
