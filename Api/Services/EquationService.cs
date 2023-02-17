@@ -10,16 +10,16 @@ namespace Api.Services
   {
     private readonly string ExpectedEquation;
 
+    public readonly MockEquation mockEquation;
     public EquationService() {
       //Aqui vira a solicitação ao banco para solicitar as equações
-      MockEquation mockEquation = new MockEquation();
-
+      mockEquation = new MockEquation();
       ExpectedEquation = ChooseDailyEquation(mockEquation.ToArray());
     }
 
     public string ChooseDailyEquation(string[] equations) {
       DateTime date = DateTime.Now;
-      Console.WriteLine(equations[date.Year * date.DayOfYear % equations.Length]);
+
       return equations[date.Year * date.DayOfYear % equations.Length];
     }
 
