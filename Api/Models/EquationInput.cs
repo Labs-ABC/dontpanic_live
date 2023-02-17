@@ -34,15 +34,17 @@ namespace Api.Models
       return $"{FirstInput}{SecondInput}{ThirdInput}{FourthInput}{FifthInput}{SixthInput}";
     }
 
-    public EquationInput ToEquationInput (string strEquation)
+    public static EquationInput ToEquationInput (string strEquation)
     {
-        FirstInput = strEquation[0];
-        SecondInput = strEquation[1];
-        ThirdInput = strEquation[2];
-        FourthInput = strEquation[3];
-        FifthInput = strEquation[4];
-        SixthInput = strEquation[5];
-        return this;
+        EquationInput eqInput = new EquationInput();
+
+        eqInput.FirstInput = strEquation[0];
+        eqInput.SecondInput = strEquation[1];
+        eqInput.ThirdInput = strEquation[2];
+        eqInput.FourthInput = strEquation[3];
+        eqInput.FifthInput = strEquation[4];
+        eqInput.SixthInput = strEquation[5];
+        return eqInput;
     }
   }
 }
