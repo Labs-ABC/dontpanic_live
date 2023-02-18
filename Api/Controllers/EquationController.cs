@@ -21,5 +21,11 @@ namespace Api.Controllers
       _equationService.ValidateEquation(input);
       return input;
     }
+
+    [HttpGet]
+    public async Task<ActionResult<List<EquationInput>>> GetAllAsync()
+    {
+      return await _equationService.GetAllAsync();
+    }
   }
 }

@@ -5,6 +5,8 @@ namespace Api.Models
 {
   public class EquationInput {
 
+    public int Id { get; set; }
+
     [Required]
     [InputCustom]
     public char FirstInput  { get; set; }

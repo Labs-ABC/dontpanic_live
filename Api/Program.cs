@@ -1,5 +1,8 @@
+using Api.Data;
 using Api.Interfaces;
 using Api.Services;
+using Microsoft.AspNetCore.Hosting.Server;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +28,8 @@ app.UseCors();
   app.UseSwaggerUI();
 //}
 
+DatabaseManagementService.MigrationInitialisation(app);
+
 //app.UseHttpsRedirection();
 
 app.UseAuthorization();
@@ -32,7 +37,12 @@ app.UseAuthorization();
 app.MapControllers();
 
 void ConfigureServices(IServiceCollection services) {
-  services.AddSingleton<IEquationService, EquationService>();
+  services.AddScoped<IEquationService, EquationService>();
+  
+  var server = builder.Configuration["DB_HOST"] ?? "localhost";
+  var connectionString = $"Server={server}, 1433;Initial Catalog=Equations; TrustServerCertificate=True;User Id=SA;Password=P@ssword123;";
+  services.AddDbContext<DbEquationContext>(options =>
+    options.UseSqlServer(connectionString));
 }
 
 app.Run();
