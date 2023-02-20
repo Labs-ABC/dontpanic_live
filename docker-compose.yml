@@ -19,7 +19,7 @@ services:
     image: api
     container_name: api
     restart: always
-    ports:
+    expose:
       - "5000:80"
     networks:
       - client_server
@@ -33,13 +33,19 @@ services:
     environment:
       - SA_PASSWORD=P@ssword123
       - ACCEPT_EULA=Y
-    ports:
+    expose:
       - "1433:1433"
     networks:
       - server_db
+    volumes:
+      - sql_data:/var/opt/mssql 
 
 networks:
   client_server:
     driver: bridge
   server_db:
     driver: bridge
+
+volumes:
+  sql_data:
+    name: sql_data
