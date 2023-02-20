@@ -1,5 +1,7 @@
-﻿using Api.Interfaces;
+﻿using Api.Data;
+using Api.Interfaces;
 using Api.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Data.Common;
 using System.Text;
@@ -8,13 +10,21 @@ namespace Api.Services
 {
   public class EquationService : IEquationService
   {
-    private readonly string ExpectedEquation;
 
+    private readonly DbEquationContext _dbEquationContext;
+    private readonly string ExpectedEquation;
     public readonly MockEquation mockEquation;
-    public EquationService() {
+
+    public EquationService(DbEquationContext dbEquationContext) {
+      
+      _dbEquationContext = dbEquationContext;
+      
       //Aqui vira a solicitação ao banco para solicitar as equações
-      mockEquation = new MockEquation();
-      ExpectedEquation = ChooseDailyEquation(mockEquation.ToArray());
+      //mockEquation = new MockEquation();
+      //db get equations
+      //ExpectedEquation = ChooseDailyEquation(mockEquation.ToArray());
+      var dbEquations = this.GetAllEquations();
+      ExpectedEquation = ChooseDailyEquation(dbEquations.Select(dbEquation => dbEquation.Value).ToArray());
     }
 
     public string ChooseDailyEquation(string[] equations) {
@@ -53,6 +63,11 @@ namespace Api.Services
       equationInput.FifthInput = ValidateInput(equationInput.FifthInput, 4);
       equationInput.SixthInput = ValidateInput(equationInput.SixthInput, 5);
       return equationInput;
+    }
+
+    public List<Equation> GetAllEquations()
+    {
+      return _dbEquationContext.Equations.ToList();
     }
   }
 }

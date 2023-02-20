@@ -6,5 +6,7 @@ namespace Api.Interfaces {
     public bool ValidateEquationResult(EquationInput eq);
     public char ValidateInput(char input, int index);
     public string ChooseDailyEquation(string[] equations);
+
+    public List<Equation> GetAllEquations();
   }
 }
