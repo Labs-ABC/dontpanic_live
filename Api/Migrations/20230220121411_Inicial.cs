@@ -22,6 +22,27 @@ namespace Api.Migrations
                 {
                     table.PrimaryKey("PK_Equations", x => x.Id);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Equations",
+                columns: new[] { "Value" },
+                values: new object[,]
+                {
+                    { "4*11-2" },
+                    { "50-8*2" },
+                    { "182-63" },
+                    { "21*2-0" },
+                    { "10*4+2" },
+                    { "42+0+0" },
+                    { "000042" },
+                    { "42*1-0" },
+                    { "21*2+0" },
+                    { "21+021" },
+                    { "066-24" },
+                    { "33+9+0" },
+                    { "14*3+0" },
+                    { "7*6-00" }
+                });
         }
 
         /// <inheritdoc />
