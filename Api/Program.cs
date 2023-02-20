@@ -37,12 +37,11 @@ app.UseAuthorization();
 app.MapControllers();
 
 void ConfigureServices(IServiceCollection services) {
-  services.AddScoped<IEquationService, EquationService>();
-  
   var server = builder.Configuration["DB_HOST"] ?? "localhost";
   var connectionString = $"Server={server}, 1433;Initial Catalog=Equations; TrustServerCertificate=True;User Id=SA;Password=P@ssword123;";
   services.AddDbContext<DbEquationContext>(options =>
     options.UseSqlServer(connectionString));
+  services.AddSingleton<IEquationService, EquationService>();
 }
 
 app.Run();

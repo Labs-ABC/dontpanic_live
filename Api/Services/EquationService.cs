@@ -20,13 +20,11 @@ namespace Api.Services
       _dbEquationContext = dbEquationContext;
       
       //Aqui vira a solicitação ao banco para solicitar as equações
-      mockEquation = new MockEquation();
+      //mockEquation = new MockEquation();
       //db get equations
-      //var dbEquations = this.GetAllEquations();
-      //ExpectedEquation = ChooseDailyEquation(dbEquations.Select(dbEquation => dbEquation.Value).ToArray());
-
-      ExpectedEquation = ChooseDailyEquation(mockEquation.ToArray());
-
+      //ExpectedEquation = ChooseDailyEquation(mockEquation.ToArray());
+      var dbEquations = this.GetAllEquations();
+      ExpectedEquation = ChooseDailyEquation(dbEquations.Select(dbEquation => dbEquation.Value).ToArray());
     }
 
     public string ChooseDailyEquation(string[] equations) {

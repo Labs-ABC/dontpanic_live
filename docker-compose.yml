@@ -1,16 +1,16 @@
 version: '3'
 
 services:
-  #web:
-  #  depends_on:
-  #    - api
-  #  build: ./Web
-  #  image: web
-  #  container_name: web
-  #  ports:
-  #    - "5014:5014"
-  #  networks:
-  #    - client_server
+  web:
+    depends_on:
+      - api
+    build: ./Web
+    image: web
+    container_name: web
+    ports:
+      - "5014:5014"
+    networks:
+      - client_server
     
   api:
     depends_on:
