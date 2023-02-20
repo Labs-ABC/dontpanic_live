@@ -21,11 +21,5 @@ namespace Api.Controllers
       _equationService.ValidateEquation(input);
       return input;
     }
-
-    [HttpGet]
-    public ActionResult<List<Equation>> GetAll()
-    {
-      return  _equationService.GetAllEquations();
-    }
   }
 }
