@@ -38,14 +38,6 @@ services:
     networks:
       - server_db
 
-  adminer:
-    image: adminer
-    container_name: adminer
-    networks:
-      - server_db
-    ports:
-      - "8000:8080"
-
 networks:
   client_server:
     driver: bridge

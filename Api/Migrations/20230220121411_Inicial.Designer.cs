@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Api.Migrations
 {
     [DbContext(typeof(DbEquationContext))]
-    [Migration("20230218021322_Inicial")]
+    [Migration("20230220121411_Inicial")]
     partial class Inicial
     {
         /// <inheritdoc />
@@ -24,7 +24,7 @@ namespace Api.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Api.Models.EquationInput", b =>
+            modelBuilder.Entity("Api.Models.Equation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -32,29 +32,9 @@ namespace Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("FifthInput")
+                    b.Property<string>("Value")
                         .IsRequired()
-                        .HasColumnType("nvarchar(1)");
-
-                    b.Property<string>("FirstInput")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1)");
-
-                    b.Property<string>("FourthInput")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1)");
-
-                    b.Property<string>("SecondInput")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1)");
-
-                    b.Property<string>("SixthInput")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1)");
-
-                    b.Property<string>("ThirdInput")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

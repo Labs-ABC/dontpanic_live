@@ -23,9 +23,9 @@ namespace Api.Controllers
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<EquationInput>>> GetAllAsync()
+    public ActionResult<List<Equation>> GetAll()
     {
-      return await _equationService.GetAllAsync();
+      return  _equationService.GetAllEquations();
     }
   }
 }

@@ -16,12 +16,7 @@ namespace Api.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstInput = table.Column<string>(type: "nvarchar(1)", nullable: false),
-                    SecondInput = table.Column<string>(type: "nvarchar(1)", nullable: false),
-                    ThirdInput = table.Column<string>(type: "nvarchar(1)", nullable: false),
-                    FourthInput = table.Column<string>(type: "nvarchar(1)", nullable: false),
-                    FifthInput = table.Column<string>(type: "nvarchar(1)", nullable: false),
-                    SixthInput = table.Column<string>(type: "nvarchar(1)", nullable: false)
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

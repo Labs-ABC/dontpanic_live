@@ -7,6 +7,6 @@ namespace Api.Interfaces {
     public char ValidateInput(char input, int index);
     public string ChooseDailyEquation(string[] equations);
 
-    public Task<List<EquationInput>> GetAllAsync();
+    public List<Equation> GetAllEquations();
   }
 }

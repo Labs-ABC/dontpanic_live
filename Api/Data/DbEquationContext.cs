@@ -9,6 +9,6 @@ namespace Api.Data
     {
     }
 
-    public DbSet<EquationInput> Equations { get; set; }
+    public DbSet<Equation> Equations { get; set; }
   }
 }

@@ -14,12 +14,19 @@ namespace Api.Services
     private readonly DbEquationContext _dbEquationContext;
     private readonly string ExpectedEquation;
     public readonly MockEquation mockEquation;
+
     public EquationService(DbEquationContext dbEquationContext) {
+      
+      _dbEquationContext = dbEquationContext;
+      
       //Aqui vira a solicitação ao banco para solicitar as equações
       mockEquation = new MockEquation();
+      //db get equations
+      //var dbEquations = this.GetAllEquations();
+      //ExpectedEquation = ChooseDailyEquation(dbEquations.Select(dbEquation => dbEquation.Value).ToArray());
+
       ExpectedEquation = ChooseDailyEquation(mockEquation.ToArray());
 
-      _dbEquationContext = dbEquationContext;
     }
 
     public string ChooseDailyEquation(string[] equations) {
@@ -60,9 +67,9 @@ namespace Api.Services
       return equationInput;
     }
 
-    public async Task<List<EquationInput>> GetAllAsync()
+    public List<Equation> GetAllEquations()
     {
-      return await _dbEquationContext.Equations.ToListAsync();
+      return _dbEquationContext.Equations.ToList();
     }
   }
 }

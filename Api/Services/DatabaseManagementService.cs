@@ -15,3 +15,5 @@ namespace Api.Services
     }
   }
 }
+//command
+//dotnet ef migrations add Inicial
