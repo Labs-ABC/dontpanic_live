@@ -1,10 +1,10 @@
 # estágio de compilação
 FROM node:lts-alpine as build-stage
 WORKDIR /App
-#COPY package*.json ./
-#RUN npm install
+COPY package*.json ./
+RUN npm install
 COPY . .
-#RUN npm run build
+RUN npm run build
 
 # estágio de produção
 FROM nginx:stable-alpine as production-stage
