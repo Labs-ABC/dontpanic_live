@@ -11,26 +11,24 @@ namespace Api.Services
   public class EquationService : IEquationService
   {
 
-    private readonly DbEquationContext _dbEquationContext;
-    private readonly string ExpectedEquation;
-    public readonly MockEquation mockEquation;
+    private DbEquationContext _dbEquationContext;
+    private string ExpectedEquation;
+    private DateTime today;
 
     public EquationService(DbEquationContext dbEquationContext) {
-      
+      ExpectedEquation = "";
       _dbEquationContext = dbEquationContext;
-      
-      //Aqui vira a solicitação ao banco para solicitar as equações
-      //mockEquation = new MockEquation();
-      //db get equations
-      //ExpectedEquation = ChooseDailyEquation(mockEquation.ToArray());
-      var dbEquations = this.GetAllEquations();
-      ExpectedEquation = ChooseDailyEquation(dbEquations.Select(dbEquation => dbEquation.Value).ToArray());
+      ChooseDailyEquation();
     }
 
-    public string ChooseDailyEquation(string[] equations) {
-      DateTime date = DateTime.Now;
-
-      return equations[date.Year * date.DayOfYear % equations.Length];
+    public async void ChooseDailyEquation()
+    {
+      today = DateTime.Now;
+      // int dbTableCount = await _dbEquationContext.Equations.CountAsync();
+      // var dbEquationReturn = await _dbEquationContext.Equations.FindAsync((today.Year * today.DayOfYear % dbTableCount) + 1);
+      var dbEquationReturn = await _dbEquationContext.Equations.FindAsync((today.Year * today.DayOfYear % 14) + 1);
+      if (dbEquationReturn != null)
+        ExpectedEquation = dbEquationReturn.Value;
     }
 
     public bool ValidateEquationResult(EquationInput eq) {
@@ -54,6 +52,9 @@ namespace Api.Services
     }
 
     public EquationInput ValidateEquation(EquationInput equationInput) {
+      if (today != DateTime.Now)
+        ChooseDailyEquation();
+
       if (!ValidateEquationResult(equationInput))
         return equationInput;
       equationInput.FirstInput = ValidateInput(equationInput.FirstInput, 0);
@@ -63,11 +64,6 @@ namespace Api.Services
       equationInput.FifthInput = ValidateInput(equationInput.FifthInput, 4);
       equationInput.SixthInput = ValidateInput(equationInput.SixthInput, 5);
       return equationInput;
-    }
-
-    public List<Equation> GetAllEquations()
-    {
-      return _dbEquationContext.Equations.ToList();
     }
   }
 }
