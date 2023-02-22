@@ -11,8 +11,8 @@ namespace Api.Services
   public class EquationService : IEquationService
   {
 
-    private DbEquationContext _dbEquationContext;
-    private string ExpectedEquation;
+    private readonly DbEquationContext _dbEquationContext;
+    public string ExpectedEquation;
     private DateTime today;
 
     public EquationService(DbEquationContext dbEquationContext) {
@@ -23,9 +23,7 @@ namespace Api.Services
 
     public async void ChooseDailyEquation()
     {
-      today = DateTime.Now;
-      // int dbTableCount = await _dbEquationContext.Equations.CountAsync();
-      // var dbEquationReturn = await _dbEquationContext.Equations.FindAsync((today.Year * today.DayOfYear % dbTableCount) + 1);
+      today = DateTime.Today;
       var dbEquationReturn = await _dbEquationContext.Equations.FindAsync((today.Year * today.DayOfYear % 14) + 1);
       if (dbEquationReturn != null)
         ExpectedEquation = dbEquationReturn.Value;
@@ -52,7 +50,7 @@ namespace Api.Services
     }
 
     public EquationInput ValidateEquation(EquationInput equationInput) {
-      if (today != DateTime.Now)
+      if (today != DateTime.Today)
         ChooseDailyEquation();
 
       if (!ValidateEquationResult(equationInput))
