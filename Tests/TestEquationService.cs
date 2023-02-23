@@ -1,6 +1,7 @@
 using Api.Models;
 using Api.Services;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
+using Api.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Test
 {
@@ -8,33 +9,60 @@ namespace Test
   {
     public EquationInput correct, incorrect, invalid;
     public EquationService service;
+    public DbEquationContext equationContext;
 
     [SetUp]
-    public void Setup()
+		public void Setup()
     {
-            service = new EquationService();
-            correct = EquationInput.ToEquationInput(service.ChooseDailyEquation(service.mockEquation.ToArray()));
 
-            incorrect = new EquationInput
-            {
-                FirstInput = '2',
-                SecondInput = '1',
-                ThirdInput = '*',
-                FourthInput = '2',
-                FifthInput = '+',
-                SixthInput = '0'
-            };
+      var equationsList = new List<Equation>()
+      {
+				new Equation { Value = "4*11-2" },
+			  new Equation { Value = "50-8*2" },
+			  new Equation { Value = "182-63" },
+			  new Equation { Value = "21*2-0" },
+			  new Equation { Value = "10*4+2" },
+			  new Equation { Value = "000042" },
+			  new Equation { Value = "42*1-0" },
+			  new Equation { Value = "21+021" },
+			  new Equation { Value = "066-24" },
+			  new Equation { Value = "33+9+0" },
+			  new Equation { Value = "14*3+0" },
+			  new Equation { Value = "7*6-00" },
+			  new Equation { Value = "42+0+0" },
+			  new Equation { Value = "21*2+0" },
+		  };
 
-            invalid = new EquationInput
-            {
-                FirstInput = '2',
-                SecondInput = '1',
-                ThirdInput = '+',
-                FourthInput = '2',
-                FifthInput = '-',
-                SixthInput = '0'
-            };
-        }
+      var dbContextOptions = new DbContextOptionsBuilder<DbEquationContext>().UseInMemoryDatabase(databaseName: "Equations").Options;
+
+		  equationContext = new DbEquationContext(dbContextOptions);
+		  equationContext.Database.EnsureCreated();
+		  equationContext.Equations.AddRange(equationsList);
+		  equationContext.SaveChanges();
+
+		  service = new EquationService(equationContext);
+      correct = EquationInput.ToEquationInput(service.ExpectedEquation);
+
+      incorrect = new EquationInput
+      {
+          FirstInput = '2',
+          SecondInput = '1',
+          ThirdInput = '*',
+          FourthInput = '2',
+          FifthInput = '+',
+          SixthInput = '0'
+      };
+
+      invalid = new EquationInput
+      {
+          FirstInput = '2',
+          SecondInput = '1',
+          ThirdInput = '+',
+          FourthInput = '2',
+          FifthInput = '-',
+          SixthInput = '0'
+      };
+    }
 
     [Test]
     public void Test_Validate_Equation_Result_Correct_Return_True()
@@ -116,12 +144,12 @@ namespace Test
       Assert.That(result, Is.EqualTo('C'));
     }
 
-    //[Test]
-    //public void Test_Validate_Input_Right_Number_In_Wrong_Position_Return_T()
-    //{
-    //  var result = service.ValidateInput('2', 1);
-    //  Assert.That(result, Is.EqualTo('T'));
-    //}
+    [Test]
+    public void Test_Validate_Input_Right_Number_In_Wrong_Position_Return_T()
+    {
+      var result = service.ValidateInput('2', 1);
+      Assert.That(result, Is.EqualTo('T'));
+    }
 
     [Test]
     public void Test_Validate_Input_Wrong_Number_Return_X()
@@ -148,24 +176,6 @@ namespace Test
       Assert.That(result.ToString(), Is.EqualTo(expected.ToString()));
     }
 
-    //[Test]
-    //public void Test_Validate_Equation_Right_Equation_Unexpected_Return_One_X_And_Five_C()
-    //{
-    //  var expected = new EquationInput
-    //  {
-    //    FirstInput = 'C',
-    //    SecondInput = 'C',
-    //    ThirdInput = 'C',
-    //    FourthInput = 'C',
-    //    FifthInput = 'X',
-    //    SixthInput = 'C'
-    //  };
-
-    //  var result = service.ValidateEquation(incorrect);
-
-    //  Assert.That(result.ToString(), Is.EqualTo(expected.ToString()));
-    //}
-
     [Test]
     public void Test_Validate_Equation_Invalid_Equation_Unexpected_Return_All_X()
     {
@@ -187,19 +197,21 @@ namespace Test
     [Test]
     public void Test_ChooseDailyEquation_Returns_Correct_Equation_Using_MockEquation()
     {
-      DateTime date = DateTime.Now;
-      string[] equations = service.mockEquation.ToArray();
-      string expected = equations[date.Year * date.DayOfYear % equations.Length];
+      DateTime date = DateTime.Today;
 
-      Assert.That(service.ChooseDailyEquation(equations), Is.EqualTo(expected));
+			Equation[] equations = equationContext.Equations.ToArray();
+      string expected = equations[date.Year * date.DayOfYear % equations.Length].Value;
+
+      service.ChooseDailyEquation();
+      Assert.That(service.ExpectedEquation, Is.EqualTo(expected));
     }
 
     [Test]
     public void Test_ChooseDailyEquation_Returns_Not_Null_Using_MockEquation()
     {
-      string[] equations = service.mockEquation.ToArray();
+      service.ChooseDailyEquation();
 
-      Assert.That(service.ChooseDailyEquation(equations), Is.Not.Null);
+			Assert.That(service.ExpectedEquation, Is.Not.Null);
     }
   }
 }
