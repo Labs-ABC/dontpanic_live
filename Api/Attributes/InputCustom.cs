@@ -2,23 +2,26 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
-namespace Api.Attributes {
-  public class InputCustomAttribute : ValidationAttribute {
+namespace Api.Attributes
+{
+	public class InputCustomAttribute : ValidationAttribute
+	{
 
-    public string GetErrorMessage() => "Invalid characters!";
+		public string GetErrorMessage() => "Invalid characters!";
 
-    protected override ValidationResult? IsValid(object? value, ValidationContext validationContext) {
-      
-      var inputs = ( EquationInput ) validationContext.ObjectInstance;
+		protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
+		{
 
-      string pattern = "^[0-9\\+\\/\\*\\-]+$";
+			var inputs = (EquationInput)validationContext.ObjectInstance;
 
-      bool isMatch = Regex.IsMatch(inputs.ToString(), pattern);
+			string pattern = "^[0-9\\+\\/\\*\\-]+$";
 
-      if (isMatch == false)
-        return new ValidationResult(GetErrorMessage());
+			bool isMatch = Regex.IsMatch(inputs.ToString(), pattern);
 
-      return ValidationResult.Success;
-    }
-  }
+			if (isMatch == false)
+				return new ValidationResult(GetErrorMessage());
+
+			return ValidationResult.Success;
+		}
+	}
 }
