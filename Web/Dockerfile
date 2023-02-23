@@ -20,13 +20,13 @@ RUN curl -o node-v18.10.0-linux-x64.tar.gz https://nodejs.org/dist/v18.10.0/node
   ln -s /usr/local/node/bin/npm /usr/local/bin/npm
 
 # copia os arquivos pacgkage.json pra dentro do container na pasta /App
-COPY package*.json .
+COPY package*.json ./
 
 # Instala as dependências (npm install)
 RUN npm install
 
 # Copia todos os arquivos para a pasta app
-COPY . .
+COPY ./ ./
 
 # Faz o build da aplicação
 RUN npm run build
