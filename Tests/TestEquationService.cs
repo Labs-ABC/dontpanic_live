@@ -31,38 +31,37 @@ namespace Test
 			  new Equation { Value = "7*6-00" },
 			  new Equation { Value = "42+0+0" },
 			  new Equation { Value = "21*2+0" },
-		};
+		  };
 
-    var dbContextOptions = new DbContextOptionsBuilder<DbEquationContext>().UseInMemoryDatabase(databaseName: "Equations").Options;
+      var dbContextOptions = new DbContextOptionsBuilder<DbEquationContext>().UseInMemoryDatabase(databaseName: "Equations").Options;
 
-		equationContext = new DbEquationContext(dbContextOptions);
-		equationContext.Database.EnsureCreated();
-		equationContext.Equations.AddRange(equationsList);
-		equationContext.SaveChanges();
+		  equationContext = new DbEquationContext(dbContextOptions);
+		  equationContext.Database.EnsureCreated();
+		  equationContext.Equations.AddRange(equationsList);
+		  equationContext.SaveChanges();
 
-		service = new EquationService(equationContext);
-    Console.WriteLine($"teste zika{service.ExpectedEquation}");
-    correct = EquationInput.ToEquationInput(service.ExpectedEquation);
+		  service = new EquationService(equationContext);
+      correct = EquationInput.ToEquationInput(service.ExpectedEquation);
 
-    incorrect = new EquationInput
-    {
-        FirstInput = '2',
-        SecondInput = '1',
-        ThirdInput = '*',
-        FourthInput = '2',
-        FifthInput = '+',
-        SixthInput = '0'
-    };
+      incorrect = new EquationInput
+      {
+          FirstInput = '2',
+          SecondInput = '1',
+          ThirdInput = '*',
+          FourthInput = '2',
+          FifthInput = '+',
+          SixthInput = '0'
+      };
 
-    invalid = new EquationInput
-    {
-        FirstInput = '2',
-        SecondInput = '1',
-        ThirdInput = '+',
-        FourthInput = '2',
-        FifthInput = '-',
-        SixthInput = '0'
-    };
+      invalid = new EquationInput
+      {
+          FirstInput = '2',
+          SecondInput = '1',
+          ThirdInput = '+',
+          FourthInput = '2',
+          FifthInput = '-',
+          SixthInput = '0'
+      };
     }
 
     [Test]
