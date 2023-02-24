@@ -18,6 +18,6 @@ jobs:
           ssh-keyscan -H ${{ secrets.LABS_SERVER_SSH_URL }} > ~/.ssh/known_hosts
       - name: Connect with 42Labs server
         run: |
-          ssh -p 4215 root@labs-abc.42sp.org.br
+          ssh -tt -p 4215 root@labs-abc.42sp.org.br
           cd DontPanicDaily
           docker-compose down
