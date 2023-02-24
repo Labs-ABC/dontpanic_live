@@ -18,5 +18,6 @@ jobs:
         key: ${{ secrets.LABS_SERVER_SSH_PRIVATE_KEY }}
         port: ${{ secrets.LABS_SERVER_SSH_PORT }}
         script: |
-          cd DontPanicDaily
-          docker-compose down
+          [[ -d dontpanic_live ]] && docker-compose -f dontpanic_live/docker-compose.yml down && rm -rf dontpanic_live
+          git clone git@github.com:Labs-ABC/dontpanic_live.git dontpanic_live
+          docker-compose -f dontpanic_live/docker-compose.yml up --build
