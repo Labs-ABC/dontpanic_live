@@ -1,0 +1,23 @@
+name: CD
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  continuous-deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure 42Labs server private key
+        run: |
+          mkdir ~/.ssh
+          touch ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+          echo "${{ secrets.LABS_SERVER_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.LABS_SERVER_SSH_URL }} > ~/.ssh/known_hosts
+      - name: Connect with 42Labs server
+        run: |
+          ssh -p ${{ secrets.LABS_SERVER_SSH_PORT }} root@${{ secrets.LABS_SERVER_SSH_URL }}
+          cd DontPanicDaily
+          docker-compose down
