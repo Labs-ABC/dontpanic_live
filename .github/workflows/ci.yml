@@ -33,3 +33,7 @@ jobs:
         
     - name: Build Images
       run: docker-compose build
+
+    - name: set success flag
+      run: echo "::set-output name=success::true"
+      id: success-flag
