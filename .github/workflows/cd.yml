@@ -20,4 +20,4 @@ jobs:
         script: |
           [[ -d dontpanic_live ]] && docker-compose -f dontpanic_live/docker-compose.yml down && rm -rf dontpanic_live
           git clone git@github.com:Labs-ABC/dontpanic_live.git dontpanic_live
-          docker-compose -f dontpanic_live/docker-compose.yml up --build
+          docker-compose -f dontpanic_live/docker-compose.yml up --build -d
